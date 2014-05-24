@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<form
+	type="browse"
+	show_header="1"
+	show_filters="1"
+	show_pagination="1"
+	norows_placeholder="COM_TIMESHEET_COMMON_NORECORDS"
+>
+	<headerset>
+		<header name="timesheet_category_id" type="rowselect" tdwidth="20" />
+
+		<header name="title" type="fieldsearchable" sortable="true"
+			buttons="no" buttonclass="btn"
+		/>
+
+		<header name="access" type="accesslevel" sortable="true" />
+
+		<header name="ordering" type="ordering" sortable="true" tdwidth="20px" />
+		
+		<header name="enabled" type="published" sortable="true" show_trash="true" tdwidth="8%" />
+	</headerset>
+
+	<fieldset name="items">
+
+		<field name="timesheet_category_id" type="selectrow"/>
+
+		<field name="title" type="text"
+			show_link="true"
+			url="index.php?option=com_timesheet&amp;view=category&amp;id=[ITEM:ID]"
+		 />
+
+		<field name="access" type="accesslevel" />
+		
+		<field name="ordering" type="ordering" labelclass="order"/>
+
+		<field name="enabled" type="published"/>
+	</fieldset>
+</form>

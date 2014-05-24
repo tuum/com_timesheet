@@ -1,0 +1,23 @@
+.icon-48-timesheet{
+	background-image: url("../../../media/com_timesheet/images/timesheet-48.png");
+}
+
+.timesheet-icon-item {
+    background: url("../../../media/com_timesheet/images/timesheet_icon.png") no-repeat scroll left top transparent;
+    display: block;
+    height: 32px;
+    margin: 4px auto 6px;
+    overflow: hidden;
+    text-indent: -99999px;
+    width: 32px;
+}
+
+.timesheet-icon-category {
+    background: url("../../../media/com_timesheet/images/category_icon.png") no-repeat scroll left top transparent;
+    display: block;
+    height: 32px;
+    margin: 4px auto 6px;
+    overflow: hidden;
+    text-indent: -99999px;
+    width: 32px;
+}

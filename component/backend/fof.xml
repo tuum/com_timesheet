@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fof>
+	<!-- Component back-end options -->
+	<backend>
+		<!-- Dispatcher options -->
+		<dispatcher>
+			<option name="default_view">cpanels</option>
+		</dispatcher>
+	</backend>
+
+	<!-- Component front-end options -->
+	<frontend>
+		<!-- Dispatcher options -->
+		<dispatcher>
+			<option name="default_view">items</option>
+		</dispatcher>
+		<!-- Options common for all views -->
+		<view name="*">
+			<!-- Per-task ACL settings. The star task sets the default ACL privileges for all tasks. -->
+			<acl>
+				<task name="*"></task>
+			</acl>
+		</view>
+		<view name="thankyou">
+			<!-- Task mapping -->
+			<taskmap>
+				<task name="browse">add</task>
+				<task name="read">add</task>
+				<task name="edit">add</task>
+			</taskmap>
+			<!-- Per-task ACL settings. An empty string removes ACL checks. -->
+			<acl>
+				<task name="add"></task>
+			</acl>
+		</view>
+	</frontend>
+</fof>

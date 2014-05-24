@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <view>
+        <options>
+            <default name="COM_TIMESHEET_MENU_ITEM" msg="COM_TIMESHEET_MENU_ITEM" />
+        </options>
+    </view>
+</metadata>

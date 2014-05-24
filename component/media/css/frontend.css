@@ -1,0 +1,38 @@
+@CHARSET "ISO-8859-1";
+
+input, textarea {
+    width: auto !important;
+}
+
+.validate-numeric {
+	float: left;
+	margin-left: 0px;
+}
+
+#billable_hours .control-label {
+    padding-right: 5px;
+    text-align: left;
+    width: auto;
+}
+
+#billable_hours .control-group:before, #billable_hours .control-group:after {
+    display: none !important;
+}
+
+#billable_hours .controls {
+    margin-left: 0 !important;
+    width: -moz-min-content;
+}
+
+.validate-numeric {
+    float: none !important;
+}
+
+#billable_hours .control-group {
+    float: left;
+	padding-right: 8px;
+}
+
+#billable_hours .control-group:first-of-type {
+    padding-left: 180px;
+}

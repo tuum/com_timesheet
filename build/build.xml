@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<!--
+	timesheet build file for Phing
+	written by Tim Plummer
+	Based on work done by Nicholas K. Dionysopoulos
+
+	Run "phing" from the build directory to build the component and plugins
+-->
+<project name="timesheetComponent" default="all" >
+	<property file="./build.properties" />
+
+	<!--						   DIRECTORY DEFINITIONS					 -->
+	<!-- The project root -->
+	<property name="dirs.root" value=".." />
+	<!-- Where our component files can be found -->
+	<property name="dirs.component" value="../component" />
+	<!-- Where the installation packages will be output -->
+	<property name="dirs.release" value="../release" />
+
+	<!-- Default version number; please don't touch it, it's a magic value!  -->
+	<property name="version" value="git" />
+
+	<!--							CUSTOM PHING TASKS						 -->
+
+	<!-- The ZipMe task is a major improvement over the plain old Zip task   -->
+	<taskdef name="zipme" classname="phingext.ZipmeTask" />
+	<!-- Our gitversion task works like svnversion, but for Git and Git-SVN repositories -->
+	<taskdef name="gitversion" classname="phingext.GitVersionTask" />
+
+
+	<!--							COPY TO TIMS DEV SITE						 -->
+	 <property name="dirs.language" value="../component/language" />
+    <property name="dev" value="../../../fofdev" override="true" />
+    <property name="devadmincomp"
+            value="../../../fofdev/administrator/components/com_timesheet"
+            override="true" />
+
+    <fileset dir="../component/backend" id="admin_files">
+            <include name="**" />
+    </fileset>
+    <fileset dir="../component/frontend" id="component_files">
+            <include name="**" />
+    </fileset>
+
+
+	<!--
+	====================================================================================================
+	File sets
+	====================================================================================================
+	-->
+	<fileset dir="${dirs.component}" id="timesheetfiles">
+		<include name="**" />
+	</fileset>
+
+	<!--
+	====================================================================================================
+	Tasks - General
+	====================================================================================================
+	-->
+
+	<target name="git" description="Makes basic stuff"
+		depends="new-release,setup-properties,component-package">
+	</target>
+
+	<target name="all" description="Makes everything"
+		depends="new-release,setup-properties,component-package">
+	</target>
+
+	<target name="new-release" description="Empty the release directory">
+		<!-- Recreate the release directory -->
+		<delete quiet="yes" includeemptydirs="true">
+			<fileset dir="${dirs.release}/">
+				<include name="*.zip" />
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="setup-properties" description="Set up version and build properties">
+		<!-- Initialize the build.date timestamp -->
+		<tstamp>
+			<format property="build.date" pattern="%Y-%m-%d" />
+		</tstamp>
+
+		<!-- Initialize the version if it's not set -->
+		<if>
+			<equals arg1="${version}" arg2="git" />
+			<then>
+				<gitversion workingcopy="${dirs.root}" propertyname="git.lastrevision" />
+				<property name="version" value="rev${git.lastrevision}" override="true" />
+			</then>
+		</if>
+	</target>
+
+	<!--
+	====================================================================================================
+	Tasks - Joomla! packages
+	====================================================================================================
+	-->
+
+	<target name="component-package" description="Component package build"
+		depends="new-release,setup-properties">
+		<!-- Create the package -->
+
+		<copy file="./templates/timesheet.xml" tofile="${dirs.component}/com_timesheet.xml" overwrite="true">
+			<filterchain>
+				<replacetokens begintoken="##" endtoken="##">
+					<token key="DATE" value="${build.date}" />
+					<token key="VERSION" value="${version}" />
+				</replacetokens>
+			</filterchain>
+		</copy>
+
+		<zipme basedir="${dirs.component}" destfile="${dirs.release}/com_timesheet-${version}.zip" includeemptydirs="true">
+			<fileset refid="timesheetfiles" />
+		</zipme>
+
+		<!-- Copy to Tim's dev site -->
+        <echo msg="Copying admin files if needed..." />
+        <copy todir="${devadmincomp}">
+                <fileset refid="admin_files" />
+        </copy>
+
+        <echo msg="Copying component files if needed..." />
+        <copy todir="${dev}/components/com_timesheet">
+                <fileset refid="component_files" />
+        </copy>
+
+        <copy file="${dirs.language}/backend/en-GB/en-GB.com_timesheet.ini"
+                todir="${dev}/administrator/language/en-GB" />
+        <copy file="${dirs.language}/frontend/en-GB/en-GB.com_timesheet.ini"
+                todir="${dev}/language/en-GB" />
+
+        <copy file="${dirs.language}/backend/en-GB/en-GB.com_timesheet.sys.ini"
+                todir="${dev}/administrator/language/en-GB" />
+
+        <copy file="${dirs.component}/media/css/backend.css"
+                todir="${dev}/media/com_timesheet/css" />
+        <copy file="${dirs.component}/media/css/frontend.css"
+                todir="${dev}/media/com_timesheet/css" />
+        <copy file="${dirs.component}/media/js/timesheet.js"
+                todir="${dev}/media/com_timesheet/js" />
+	</target>
+
+</project>

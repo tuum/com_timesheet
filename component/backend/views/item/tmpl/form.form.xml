@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	@package	timesheet
+	@copyright	Copyright (c)2014 Tamlyn Software
+	@license	GNU General Public License version 2 or later
+
+	Teimsheet view form file
+-->
+<form
+	cssfiles="media://com_timesheet/css/backend.css"
+	jsfiles="media://com_timesheet/js/timesheet.js"
+	validate="true"
+>
+	<fieldset name="timesheet_details"
+		label="COM_TIMESHEET_ITEM_GROUP_TIMESHEET_DETAILS_LABEL"
+		class="span4"
+	>
+
+		<field name="title" type="text"
+			class="inputbox"
+			label="COM_TIMESHEET_ITEM_FIELD_TITLE_LABEL"
+			labelclass="ttsheet-label ttsheet-label-main"
+			required="true"
+			size="30"
+		 />
+
+		<field name="weekstart" type="calendar"
+			class="inputbox"
+			label="COM_TIMESHEET_ITEM_FIELD_WEEKSTART_LABEL"
+			labelclass="ttsheet-label"
+			required="true"
+			size="20"
+			default="NOW"
+		 />
+
+		<field name="enabled" type="list" label="JSTATUS"
+			labelclass="ttsheet-label"
+			class="inputbox"
+			filter="intval" size="1" default="1"
+		>
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+	</fieldset>
+
+	<fieldset name="billable_hours"
+		label="COM_TIMESHEET_ITEM_GROUP_BILLABLE_HOURS_LABEL"
+		class="span12"
+	>
+		<field name="billable_mon" type="text"
+			label="COM_TIMESHEET_ITEM_FIELD_BILLABLE_MON_LABEL"
+			size="1"
+			maxlength="3"
+			default="0"
+			class="inputbox validate-numeric"
+		/>
+
+		<field name="billable_tue" type="text"
+			label="COM_TIMESHEET_ITEM_FIELD_BILLABLE_TUE_LABEL"
+			size="1"
+			maxlength="3"
+			default="0"
+			class="inputbox validate-numeric"
+		/>
+
+		<field name="billable_wed" type="text"
+			label="COM_TIMESHEET_ITEM_FIELD_BILLABLE_WED_LABEL"
+			size="1"
+			maxlength="3"
+			default="0"
+			class="inputbox validate-numeric"
+		/>
+
+		<field name="billable_thu" type="text"
+			label="COM_TIMESHEET_ITEM_FIELD_BILLABLE_THU_LABEL"
+			size="1"
+			maxlength="3"
+			default="0"
+			class="inputbox validate-numeric"
+		/>
+
+		<field name="billable_fri" type="text"
+			label="COM_TIMESHEET_ITEM_FIELD_BILLABLE_FRI_LABEL"
+			size="1"
+			maxlength="3"
+			default="0"
+			class="inputbox validate-numeric"
+		/>
+
+		<field name="billable_sat" type="text"
+			label="COM_TIMESHEET_ITEM_FIELD_BILLABLE_SAT_LABEL"
+			size="1"
+			maxlength="3"
+			default="0"
+			class="inputbox validate-numeric"
+		/>
+
+		<field name="billable_sun" type="text"
+			label="COM_TIMESHEET_ITEM_FIELD_BILLABLE_SUN_LABEL"
+			size="1"
+			maxlength="3"
+			default="0"
+			class="inputbox validate-numeric"
+		/>
+	</fieldset>
+
+	<fieldset name="timesheet_totals"
+		class="span8"
+	>
+		<field name="total_hours" type="text"
+			label="COM_TIMESHEET_ITEM_FIELD_TOTAL_HOURS_LABEL"
+			size="5"
+			maxlength="10"
+			default="0"
+			class="inputbox validate-numeric"
+			readonly="true"
+		/>
+	</fieldset>
+
+	<fieldset name="timesheet_comments"
+		class="span12"
+	>
+
+		<field name="comments" type="editor"
+			label="COM_TIMESHEET_ITEM_FIELD_DESCRIPTION_DESC"
+			filter="JComponentHelper::filterText" buttons="true" />
+	</fieldset>
+
+</form>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+	cssfiles="media://com_timesheet/css/backend.css"
+	type="browse"
+	show_header="1"
+	show_filters="1"
+	show_pagination="1"
+	norows_placeholder="COM_TIMESHEET_COMMON_NORECORDS"
+>
+	<headerset>
+		<header name="ordering" type="ordering" sortable="true" tdwidth="1%" />
+		<header name="timesheet_item_id" type="rowselect" tdwidth="20" />
+		<header name="title" type="fieldsearchable" sortable="true"
+			buttons="yes" buttonclass="btn"
+		/>
+
+		<header name="created_on" type="field" sortable="true"
+			label="COM_TIMESHEET_ITEM_CREATED_ON_LABEL"
+		/>
+
+		<header name="enabled" type="published" sortable="true" tdwidth="8%" />
+	</headerset>
+
+	<fieldset name="items">
+		<field name="ordering" type="ordering" labelclass="order"/>
+
+		<field name="timesheet_item_id" type="selectrow"/>
+
+		<field name="title" type="text"
+			show_link="true"
+			url="index.php?option=com_timesheet&amp;view=item&amp;task=edit&amp;id=[ITEM:ID]"
+			empty_replacement="(no title)"
+		 />
+
+		<field name="created_on" type="calendar" format="%d-%m-%Y" />
+
+		<field name="enabled" type="published"/>
+	</fieldset>
+</form>

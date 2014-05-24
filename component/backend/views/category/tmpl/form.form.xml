@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<form validate="true">
+	<fieldset name="basic_configuration"
+		label="COM_TIMESHEET_CATEGORIES_GROUP_BASIC"
+	>
+		<field name="title" type="text"
+			label="COM_TIMESHEET_CATEGORIES_FIELD_CATEGORY_TITLE_LABEL"
+			description="COM_TIMESHEET_CATEGORIES_FIELD_CATEGORY_TITLE_DESC"
+			class="input-xlarge hasTooltip"
+			required="true"
+		/>
+
+		<field name="access" type="accesslevel"
+			label="COM_TIMESHEET_CATEGORIES_FIELD_ACCESS_LABEL"
+			description="COM_TIMESHEET_CATEGORIES_FIELD_ACCESS_DESC"
+			required="true"
+		/>
+
+		<field name="enabled" type="radio" label="JSTATUS"
+			labelclass="todo-label"
+			class="btn-group"
+			filter="intval" size="1" default="1"
+		>
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+	</fieldset>
+</form>

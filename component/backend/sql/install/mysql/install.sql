@@ -1,0 +1,43 @@
+CREATE TABLE IF NOT EXISTS `#__timesheet_items` (
+  `timesheet_item_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `timesheet_category_id` bigint(20) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `slug` varchar(50) NOT NULL,
+  `employee_id` bigint(20) NOT NULL DEFAULT '0',
+  `weekstart` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `billable_mon` FLOAT( 10, 2 ) NOT NULL DEFAULT '0',
+  `billable_tue` FLOAT( 10, 2 ) NOT NULL DEFAULT '0',
+  `billable_wed` FLOAT( 10, 2 ) NOT NULL DEFAULT '0',
+  `billable_thu` FLOAT( 10, 2 ) NOT NULL DEFAULT '0',
+  `billable_fri` FLOAT( 10, 2 ) NOT NULL DEFAULT '0',
+  `billable_sat` FLOAT( 10, 2 ) NOT NULL DEFAULT '0',
+  `billable_sun` FLOAT( 10, 2 ) NOT NULL DEFAULT '0',
+  `total_hours` FLOAT( 10, 2 ) NOT NULL DEFAULT '0',
+  `comments` mediumtext,
+  `enabled` tinyint(3) NOT NULL DEFAULT '1',
+  `ordering` int(10) NOT NULL DEFAULT '0',
+  `created_by` bigint(20) NOT NULL DEFAULT '0',
+  `created_on` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modified_by` bigint(20) NOT NULL DEFAULT '0',
+  `modified_on` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `locked_by` bigint(20) NOT NULL DEFAULT '0',
+  `locked_on` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`timesheet_item_id`)
+) DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `#__timesheet_categories` (
+  `timesheet_category_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `slug` varchar(50) NOT NULL,
+  `access` int(5) NOT NULL DEFAULT '3',
+  `language` varchar(50) NOT NULL DEFAULT '*',
+  `ordering` int(10) NOT NULL DEFAULT '0',
+  `enabled` tinyint(3) NOT NULL DEFAULT '1',
+  `created_on` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created_by` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `modified_on` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modified_by` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `locked_on` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `locked_by` bigint(20) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`timesheet_category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
