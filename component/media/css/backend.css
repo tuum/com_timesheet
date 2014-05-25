@@ -21,3 +21,7 @@
     text-indent: -99999px;
     width: 32px;
 }
+
+.icon-back:before {
+    content: "l";
+}
