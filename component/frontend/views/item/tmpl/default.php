@@ -22,4 +22,4 @@
 
 defined('_JEXEC') or die();
 
-echo $this->loadAnyTemplate('site:com_timesheet/item/form');
+echo $this->loadAnyTemplate('admin:com_timesheet/item/form');
